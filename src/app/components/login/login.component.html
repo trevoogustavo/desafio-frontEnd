@@ -1,0 +1,33 @@
+<div class="container col-sm-6 mt-5">
+    <div class="jumbotron">
+      <h3>
+          {{this.message}}
+      </h3>
+      <h2 class="text-center">Login</h2>
+<div>
+  <form >
+      <div class="form-group "[class.has-error]="!nome.valid && nome.touched"> 
+            <label  for="usuario"><b>Usuario</b></label>
+             <input [(ngModel)]="user.nome" name="nome" class="form-control" id="usuario" type="text" placeholder="Digite o seu usuário"
+            required #nome="ngModel">
+             <div *ngIf="!nome.valid && nome.touched"
+             class="alert alert-danger" role="alert"> 
+               Usuário é obrigatório
+             </div>
+      </div>
+      <div class="form-group " [class.has-error]="!senha.valid && senha.touched"> 
+        <label  for="senha"><b>Senha</b></label>
+         <input [(ngModel)]="user.senha" name="senha" class="form-control" id="usuario" type="password" placeholder="Digite sua senha"
+        required #senha="ngModel">
+        <div *ngIf="!senha.valid && senha.touched"
+        class="alert alert-danger" role="alert"> 
+          Senha é obrigatório
+        </div>
+  </div>
+
+  <button class="btn btn-success" type="button" (click)="fazerLogin()" >Login</button>
+      <button class="btn btn-danger ml-2" ng-click="" disabled="true">Esqueci minha senha</button>
+  </form>
+  </div>
+</div>
+</div>

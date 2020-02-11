@@ -1,0 +1,28 @@
+
+<h1 class="classic mt-1 text-center text-dark" *ngIf="mostrarMenu()"> DESAFIO DEV JR.</h1>
+     <!--  *ngIf="mostrarMenu()" -->
+<nav class="navbar navbar-dark bg-primary" *ngIf="mostrarMenu()">
+  <a routerLinkActive="active" class="navbar-brand" [routerLink]="['/cliente']">Clientes  </a>
+  <a routerLinkActive="active" class="navbar-brand"  cursor-pointer  (click)="fazerLogoff()"><button>Sair</button> </a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <!-- <li class="nav-item ">
+        <a class="nav-link text-light" style="margin-left: 500px;" [routerLink]="['/']">HOME </a>
+      </li> -->
+      <!-- <li class="nav-item">
+        <a routerLinkActive="active" class="nav-link "  [routerLink]="['/cliente']"><button class="btn btn-primary">Clientes</button> </a>
+      </li> -->
+      <!-- <li class="nav-item">
+        <a routerLinkActive="active" class="nav-link " [routerLink]="['/produtos']"><button class="btn btn-primary">PRODUTOS</button> </a>
+      </li> -->
+      
+    </ul>
+    
+    <button class="btn btn-danger" type="button" >Sair</button>
+  </div>
+</nav>
+
+<div class="container"> 
+  
+  <router-outlet></router-outlet>
+</div>
