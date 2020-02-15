@@ -25,7 +25,7 @@ private user: User = new User();
        sessionStorage.setItem('user',btoa(this.user.nome));
        sessionStorage.setItem('pass', btoa(this.user.senha));
        sessionStorage.setItem('level', data.level)
-       this.router.navigate(['cliente'])
+       this.router.navigate([''])
        console.log(data);
      }, error =>{
        this.error = error;

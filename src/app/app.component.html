@@ -2,8 +2,9 @@
 <h1 class="classic mt-1 text-center text-dark" *ngIf="mostrarMenu()"> DESAFIO DEV JR.</h1>
      <!--  *ngIf="mostrarMenu()" -->
 <nav class="navbar navbar-dark bg-primary" *ngIf="mostrarMenu()">
-  <a routerLinkActive="active" class="navbar-brand" [routerLink]="['/cliente']">Clientes  </a>
-  <a routerLinkActive="active" class="navbar-brand"  cursor-pointer  (click)="fazerLogoff()"><button>Sair</button> </a>
+  <a routerLinkActive="active" class="navbar-brand" [routerLink]="['cliente']"  *ngIf="displayAdmin">Clientes </a>
+  <a routerLinkActive="active" class="navbar-brand" [routerLink]="['']"  *ngIf="displayAdmin">Home </a>
+  <a routerLinkActive="active" class="navbar-brand"  cursor-pointer  (click)="fazerLogoff()"><button class="btn btn-danger" >Sair</button> </a>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <!-- <li class="nav-item ">
@@ -18,7 +19,7 @@
       
     </ul>
     
-    <button class="btn btn-danger" type="button" >Sair</button>
+    <!-- <button class="btn btn-danger" type="button" >Sair</button> -->
   </div>
 </nav>
 

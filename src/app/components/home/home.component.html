@@ -1,1 +1,36 @@
-<p>home works!</p>
+<div class="container">
+    <div class="mt-5 text-center"*ngIf="displayError" >
+       <h5>{{error}}</h5> 
+    </div>
+
+    <div class="row">
+        
+        <table class="mt-5 table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Cpf</th>
+                <th scope="col">Ação</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let item of clientes">
+              <tr>
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.nome}}</td>
+                <td>{{item.cpf}}</td>
+                
+                <span class="float=right">
+                    <button class="btn btn-success mb-1  btn-sm" data-toggle="modal" data-target="#modalProduto" (click)="onPreUpdate(item)">Visualizar</button>
+                    {{''}}
+                    <button class="btn btn-primary mb-1  btn-sm" data-toggle="modal" data-target="#modalProduto" (click)="onPreUpdate(item)" *ngIf="isAdmin">Atualizar</button> 
+                      {{''}}
+                    <button class="btn btn-danger mb-1 btn-sm" data-toggle="modal" data-target="#modalProduto-excluir "(click)="onPreUpdate(item)" *ngIf="isAdmin">Excluir</button> 
+                </span>
+              </tr>
+              
+            </tbody>
+          </table>
+    </div>
+</div>
+

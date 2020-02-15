@@ -10,6 +10,7 @@ import { ClienteCadastroComponent } from './components/cliente-cadastro/cliente-
 import { PaginaNaoEncontradaComponent } from './components/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './components/login/auth.service';
+import { AuthGuard } from './guards/auth-guard';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { AuthService } from './components/login/auth.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,6 +3,7 @@ import { ClienteCadastroComponent } from './components/cliente-cadastro/cliente-
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth-guard';
 
 
 import { LoginComponent } from './components/login/login.component';
@@ -13,8 +14,8 @@ import { PaginaNaoEncontradaComponent } from './components/pagina-nao-encontrada
 const routes: Routes = [
 
   { path: 'login',  component: LoginComponent },
-  { path: 'cliente', component: ClienteCadastroComponent },
-  {path: '', component: HomeComponent},
+  { path: 'cliente', canActivate: [AuthGuard], component: ClienteCadastroComponent },
+  {path: '', canActivate: [AuthGuard], component: HomeComponent},
  // { path: '', canActivate: [AuthGuard], redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PaginaNaoEncontradaComponent}, 
 ];
