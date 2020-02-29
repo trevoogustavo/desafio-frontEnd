@@ -10,16 +10,17 @@ import { error } from 'protractor';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-private clientes: Cliente[];
+private clientes: Cliente[] = [];
+private cliente:  Cliente = new Cliente();
 private error;
 displayError: boolean = false;
 isAdmin: boolean =false;
-  constructor(private service: ClienteService, private auth: AuthService) { }
+  constructor(private service: ClienteService, private auth: AuthService) {
+    this.isAdmin = this.auth.isAdmin();
+   }
 
   ngOnInit() {
-    this.findAll();
-    debugger;
-    this.isAdmin = this.auth.isAdmin();
+    this.findAll(); 
   }
 
   findAll(){
@@ -35,5 +36,10 @@ isAdmin: boolean =false;
       }
       console.log("erro:",error['error'].message)
     })
+  }
+
+  onViewCliente(cliente: Cliente){
+    this.cliente= cliente;
+    console.log(this.cliente);
   }
 }

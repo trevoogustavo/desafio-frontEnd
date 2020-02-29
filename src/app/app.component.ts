@@ -16,8 +16,8 @@ export class AppComponent implements OnInit{
   constructor(private route: Router, private authService:AuthService){
     this.ambiente =environment.ambiente;
   }
-   ngOnInit():void{
-     this.isAdmin();
+  ngOnInit():void{
+    this.isAdmin();
    }
   mostrarMenu(){
     if(this.authService.usuarioLogado() ){
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit{
   isAdmin(){
     if(sessionStorage.getItem('level') === 'ADMIN'){
       this.displayAdmin = !this.displayAdmin;
+      return true;
     }
   }
 }

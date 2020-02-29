@@ -3,7 +3,7 @@ import { Telefone } from './Telefone';
 import { Endereco } from './Endereco';
 export class Cliente{
 
-    id;
+    id: number;
     nome: string;
     cpf: string;
     endereco: Endereco;

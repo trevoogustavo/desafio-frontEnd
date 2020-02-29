@@ -1,4 +1,110 @@
 
 <div class="container" *ngIf="displayAdmin">
-<h4>Cadastro de clientes</h4>
+<h4 class="mt-3">Cadastro de clientes</h4>
+<hr>
+<div class="container-fluid ">
+  <!--   <div class="col-6">
+        
+    </div> -->
+    <form class="form-group" #form="ngForm" ngSubmit="salvarCliente(form)">
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="Nome">Nome *</label>
+            <input minlength="3" maxlength="100" required type="text" class="form-control" name="nome" [ngModel]="cliente.nome" #nome="ngModel" placeholder="Ex: Seu Nome">               
+          </div>
+
+          <div class="form-group col-6">
+            <label for="Cpf">Cpf *</label>
+            <input type="text" class="form-control"  id="cpfCliente" name="cpf" #cpf="ngModel" [ngModel]="cliente.cpf" [textMask]="{mask: cpfMask}" placeholder="Insira seu cpf (somente números)">
+          </div>
+        </div>
+        
+            <h5>Endereço</h5>
+          
+                <div class="row">
+                    <div class="form-group col-6">
+                      <label for="Cep">Cep *</label>
+                      <input  type="text" class="form-control" [value]="endereco.cep" id="endCliente" name="cep" [(ngModel)]="endereco.cep"  (blur)="buscarEndereco($event.target.value)"  placeholder="Ex: 99.999-999">               
+                    </div>
+          
+                    <div class="form-group col-6">
+                      <label for="Logradouro">Logradouro *</label>
+                      <input  type="text" class="form-control" [value]="endereco.logradouro" id="" name="logradouro"  [(ngModel)]="endereco.logradouro" placeholder="">
+                    </div>
+                  </div>                
+              <div class="row">
+                <div class="form-group col-6">
+                  <label for="Complemento">Complemento</label>
+                  <input   type="text" class="form-control" [value]="endereco.complemento" id="" name="complemento"[(ngModel)]="endereco.complemento" placeholder="">
+                </div>  
+                <div class="form-group col-6">
+                  <label for="Bairo">Bairo *</label>
+                  <input  type="text" class="form-control" id="" name="bairro" [(ngModel)]="endereco.bairro"  placeholder="Bairro">
+                </div>    
+              </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="Cidade">Cidade *</label>
+            <input  type="text" class="form-control" id="" name="localidade" [(ngModel)]="endereco.localidade" placeholder="">
+          </div>  
+          <div class="form-group col-6">
+            <label for="Uf">Uf *</label>
+            <input  type="text" class="form-control"  id="uf" name="uf" [(ngModel)]="endereco.uf" placeholder="">
+          </div>  
+        </div>      
+        <h5>Telefones</h5>
+        <div class="row">
+            <div class="form-group col-4">
+              <label for="telefone">Tipo</label>
+              <select class="custom-select" name="tipo" [(ngModel)]="telefone.tipo">
+                <option value="Telefone" >Telefone</option>
+                <option value="Celular">Celular</option>
+              </select>
+            </div>  
+            <div class="form-group col-4">
+              <label for="Uf">Número</label>
+              <input  type="tel" class="form-control" [value]="telefone.numero" name="numero" [textMask]="{mask: telMask}" [(ngModel)]="telefone.numero" id="" placeholder="">
+            </div> 
+            <div class=" mt-4 form-group col-4 ">
+                <button class=" form-control btn btn-primary" (click)="addTelefone()">Adicionar</button>
+            </div>
+            <div class="form-group col-8"*ngIf="telefones.length > 0">
+              <table class="table table-triped">
+                <tr>
+                  <th>Tipo</th>
+                  <th>Número</th>
+                </tr>
+                <tbody *ngFor="let item of telefones">
+                  <td>{{item.tipo}}</td>
+                  <td>{{item.numero}}</td>
+                </tbody>
+                
+              </table>
+            </div> 
+          </div>      
+        <h5>Emails</h5>
+          <div class="row">
+              <div class="col-8">
+                <label for="Uf">Email</label>
+                <input  type="text" class="form-control" [value]="email.endereco" name="endereco" [(ngModel)]="email.endereco" id="" placeholder="" email>
+              </div>
+              <div class="mt-4 col-4">
+                <button class=" form-control btn btn-primary" (click)="addEmail()" >Adicionar</button>
+            </div>
+
+            <div class="form-group col-8" *ngIf="emails.length > 0">
+              <table class="table table-triped">
+                <tr>           
+                  <th>Endereço de Email</th>
+                </tr>
+                <tbody *ngFor="let item of emails">
+                  <td>{{item.endereco}}</td>
+                </tbody>
+                
+              </table>
+            </div> 
+          </div>
+        <button class="mt-3 btn btn-primary" type="button" (click)="salvarCliente(form)">Salvar</button>
+      </form>
+</div>
 </div>

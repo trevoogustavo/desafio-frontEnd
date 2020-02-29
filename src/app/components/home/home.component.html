@@ -18,19 +18,122 @@
               <tr>
                 <th scope="row">{{item.id}}</th>
                 <td>{{item.nome}}</td>
-                <td>{{item.cpf}}</td>
+                <td>{{ item.cpf | mask: '000.000.000-00' }}</td>
                 
                 <span class="float=right">
-                    <button class="btn btn-success mb-1  btn-sm" data-toggle="modal" data-target="#modalProduto" (click)="onPreUpdate(item)">Visualizar</button>
+                    <button class="btn btn-success mt-2 btn-sm" data-toggle="modal"  data-target="#formClienteView" (click)="onViewCliente(item)">Visualizar</button>
                     {{''}}
-                    <button class="btn btn-primary mb-1  btn-sm" data-toggle="modal" data-target="#modalProduto" (click)="onPreUpdate(item)" *ngIf="isAdmin">Atualizar</button> 
+                    <button class="btn btn-primary mt-1  btn-sm"  (click)="onPreUpdate(item)" *ngIf="isAdmin">Atualizar</button> 
                       {{''}}
-                    <button class="btn btn-danger mb-1 btn-sm" data-toggle="modal" data-target="#modalProduto-excluir "(click)="onPreUpdate(item)" *ngIf="isAdmin">Excluir</button> 
+                    <button class="btn btn-danger mt-1 btn-sm"  (click)="onPreUpdate(item)" *ngIf="isAdmin">Excluir</button> 
                 </span>
               </tr>
               
             </tbody>
           </table>
     </div>
+
+
+
+    <!-- Botão para acionar modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="formClienteView" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="clienteNome" >{{ cliente.nome }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div  class="container-fluid">
+          <div class="col-12">
+
+            <form>
+              <div class="row">
+                <div class="form-group col-6">
+                  <label for="Cep">Cep </label>
+                  <input readonly type="text" class="form-control" [value]="" id=""  placeholder="">               
+                </div>
+
+                <div class="form-group col-6">
+                  <label for="Logradouro">Logradouro</label>
+                  <input readonly type="text" class="form-control" [value]="" id="" placeholder="">
+                </div>
+              </div>
+                    <div class="row">
+                      <div class="form-group col-6">
+                        <label for="exampleInputPassword1">Complemento</label>
+                        <input  readonly type="text" class="form-control" [value]="" id="" placeholder="">
+                      </div>  
+                      <div class="form-group col-6">
+                        <label for="Bairo">Bairo</label>
+                        <input readonly type="text" class="form-control" [value]="" id="" placeholder="">
+                      </div>    
+                    </div>
+              <div class="row">
+                <div class="form-group col-6">
+                  <label for="Bairo">Cidade</label>
+                  <input readonly type="text" class="form-control" [value]="" id="" placeholder="">
+                </div>  
+                <div class="form-group col-6">
+                  <label for="Uf">Uf</label>
+                  <input readonly type="text" class="form-control" [value]="" id="" placeholder="">
+                </div>  
+              </div>
+             
+
+
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <h4 class=" classic ml-3 text-center " >Telefones</h4>
+          <table class="mt-2 table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Número</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let item of cliente.telefones">
+              <tr>
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.tipo}}</td>
+                <td>{{item.numero  | mask: '(00) 0000-0000'}}</td>
+               <td> </td>
+              </tr>
+          </table>
+
+        </div>
+        {{''}}
+        <div class="row">
+          <h4 class=" classic  ml-3 text-center " >Emails</h4>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let item of cliente.emails">
+              <tr>
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.endereco}}</td>
+                <!-- <td><p-inputMask ></p-inputMask> </td> -->
+              </tr>
+          </table>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button mt-1" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 

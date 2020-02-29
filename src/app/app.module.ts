@@ -2,6 +2,9 @@ import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
+import {InputMaskModule} from 'primeng/inputmask';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { TextMaskModule } from 'angular2-text-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -26,7 +29,10 @@ import { AuthGuard } from './guards/auth-guard';
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    InputMaskModule,
+    TextMaskModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
