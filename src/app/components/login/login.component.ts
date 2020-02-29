@@ -20,7 +20,6 @@ private user: User = new User();
   }
 
    fazerLogin(){
-    debugger;
      this.authService.fazerLogin(this.user).subscribe((data: User) =>{
        sessionStorage.setItem('user',btoa(this.user.nome));
        sessionStorage.setItem('pass', btoa(this.user.senha));
@@ -29,6 +28,7 @@ private user: User = new User();
        console.log(data);
      }, error =>{
        this.error = error;
+       alert("Algo deu errado, tente novamente mais tarde.")
      console.log("Algo deu errado", error)
     });
    }

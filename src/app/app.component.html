@@ -3,7 +3,7 @@
      <!--  *ngIf="mostrarMenu()" -->
 <nav class="navbar navbar-dark bg-primary" *ngIf="mostrarMenu()">
   <a routerLinkActive="active" class="navbar-brand" [routerLink]="['cliente']"  *ngIf="isAdmin()">Clientes </a>
-  <a routerLinkActive="active" class="navbar-brand" [routerLink]="['']"  *ngIf="displayAdmin">Home </a>
+  <a routerLinkActive="active" class="navbar-brand" [routerLink]="['']"  *ngIf="isAdmin()">Home </a>
   <a routerLinkActive="active" class="navbar-brand"  cursor-pointer  (click)="fazerLogoff()"><button class="btn btn-danger" >Sair</button> </a>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">

@@ -1,9 +1,8 @@
 <div class="container">
-    <div class="mt-5 text-center"*ngIf="displayError" >
-       <h5>{{error}}</h5> 
-    </div>
+  <h5 class="classic text-center alert alert-danger" *ngIf="erro">{{error}}</h5>
+  <h5 class="classic text-center alert alert-success" *ngIf="message">{{message}}</h5>
 
-    <div class="row">
+    <div class="row" *ngIf="!displayForm">
         
         <table class="mt-5 table table-striped">
             <thead>
@@ -25,7 +24,7 @@
                     {{''}}
                     <button class="btn btn-primary mt-1  btn-sm"  (click)="onPreUpdate(item)" *ngIf="isAdmin">Atualizar</button> 
                       {{''}}
-                    <button class="btn btn-danger mt-1 btn-sm"  (click)="onPreUpdate(item)" *ngIf="isAdmin">Excluir</button> 
+                    <button class="btn btn-danger mt-1 btn-sm"  (click)="excluirCliente(item)" *ngIf="isAdmin">Excluir</button> 
                 </span>
               </tr>
               
@@ -33,12 +32,11 @@
           </table>
     </div>
 
-
-
+<cliente-form *ngIf="isAdmin && displayForm"></cliente-form>
     <!-- Botão para acionar modal -->
 
 <!-- Modal -->
-<div class="modal fade" id="formClienteView" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+<div class="modal fade" id="formClienteView" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
