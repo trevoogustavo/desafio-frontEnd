@@ -1,3 +1,4 @@
+import { Endereco } from './../../model/Endereco';
 
 import { AuthService } from './../login/auth.service';
 import { ClienteService } from './../../services/cliente.service';
@@ -14,9 +15,14 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 displayForm: boolean = false;
 clientes: Cliente[] = [];
-cliente:  Cliente = new Cliente();
+//onUpdate: boolean = false;
+ cliente:  Cliente = new Cliente();
+ endereco: Endereco= new Endereco();
 @Output() eventUpdate =  new EventEmitter();
-private error;
+error;
+telMask = ['(',/[1-9]/, /\d/,')', ' ', /\d/,/\d/,/\d/,/\d/, '-', /\d/,/\d/,/\d/,/\d/,/\d/]
+cepMask = [/[0-9]/,/\d/,'.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, ]
+ 
 message;
 displayError: boolean = false;
 isAdmin: boolean =false;
@@ -31,8 +37,7 @@ isAdmin: boolean =false;
   findAll(){
     this.service.findAll().subscribe((data: Cliente[]) =>{
       this.clientes = data;
-      console.log(this.clientes);
-      
+  
     }, error  =>{
       this.error = error['error'].message;
       this.displayError = !this.displayError;
@@ -46,17 +51,28 @@ isAdmin: boolean =false;
 
   onViewCliente(cliente: Cliente){
     this.cliente= cliente;
+    this.endereco= this.cliente.endereco
     console.log(this.cliente);
   }
 
   onPreUpdate(cliente: Cliente){
-      console.log(cliente)
-      this.displayForm = !this.displayForm;
-      this.eventUpdate.emit(cliente);
-      
+    if( this.clientes.length < 0){
+      this.clientes = []
+    }
+      this.cliente = cliente;
+      this.endereco= this.cliente.endereco
 
   }
-
+  onUpdate(form){
+    this.cliente.endereco = this.endereco;
+    this.service.salvarCliente(this.cliente, sessionStorage.getItem('level')).subscribe((data) =>{
+        this.message = "Cliente Atualizado com sucesso"
+        this.service.findAll();
+    },error =>{
+      console.error(error);
+    });
+    console.log(this.cliente)
+  }
   excluirCliente(cliente){
     this.service.excluirCliente(cliente.id, sessionStorage.getItem('level')).subscribe((res)=>{
       console.log(res)

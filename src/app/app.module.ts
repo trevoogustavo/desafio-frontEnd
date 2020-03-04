@@ -1,7 +1,7 @@
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import {InputMaskModule} from 'primeng/inputmask';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { TextMaskModule } from 'angular2-text-mask';
@@ -30,6 +30,7 @@ import { AuthGuard } from './guards/auth-guard';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     InputMaskModule,
     TextMaskModule,
     NgxMaskModule.forRoot()
