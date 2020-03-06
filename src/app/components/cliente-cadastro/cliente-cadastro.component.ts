@@ -36,14 +36,14 @@ public  endereco: Endereco = new Endereco();
     this.formulario = this.formBuilder.group({
       nome:[null, [Validators.minLength(3), Validators.required, Validators.maxLength(100)]],
       cpf:[null, [Validators.required]],
-      cep:[null],
+      cep:[null, [Validators.required]],
       logradouro:[null],
       complemento:[null],
-      bairro:[null],
-      localidade:[null],
-      uf:[null],
-      tipoTel:[null],
-      numero:[''],
+      bairro:[null, [Validators.required]],
+      localidade:[null, [Validators.required]],
+      uf:[null, [Validators.required] ],
+      tipoTel:[null ],
+      numero:['' ],
       email:[''],
       
     });
@@ -52,7 +52,6 @@ public  endereco: Endereco = new Endereco();
     this.service.emitirCliente.subscribe(     
       (cliente) => {
         this.cliente = cliente
-        console.log(cliente)
       });
   }
 
@@ -68,7 +67,6 @@ public  endereco: Endereco = new Endereco();
     this.telefones.push(this.telefone);
     this.formulario.get('tipoTel').reset();
     this.formulario.get('numero').reset();
-    this.endereco =  new Endereco();
   }
   removeTelefone(telefone){
     this.telefones.splice(telefone)
@@ -98,7 +96,6 @@ public  endereco: Endereco = new Endereco();
     this.cliente.endereco = this.endereco;
     this.cliente.telefones= this.telefones;
     this.cliente.emails= this.emails; 
-    console.log(this.cliente)
     this.formulario.reset()
      this.service.salvarCliente(this.cliente,  sessionStorage.getItem('level')).subscribe((data) =>{
       this.message = data['mensagem']
@@ -127,7 +124,6 @@ buscarEndereco(cep){
   this.service.buscarEndereco(cepReg).subscribe((data: Endereco) =>{
      // this.formulario.controls['logradouro'].setValue(data['logradouro']) 
      this.endereco = data 
-      console.log(data['localidade'])
   },error =>{
     console.log(error)
   });

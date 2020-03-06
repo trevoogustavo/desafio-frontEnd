@@ -52,7 +52,6 @@ isAdmin: boolean =false;
   onViewCliente(cliente: Cliente){
     this.cliente= cliente;
     this.endereco= this.cliente.endereco
-    console.log(this.cliente);
   }
 
   onPreUpdate(cliente: Cliente){
@@ -71,11 +70,9 @@ isAdmin: boolean =false;
     },error =>{
       console.error(error);
     });
-    console.log(this.cliente)
   }
   excluirCliente(cliente){
     this.service.excluirCliente(cliente.id, sessionStorage.getItem('level')).subscribe((res)=>{
-      console.log(res)
         this.findAll();
         alert(res['mensagem'])
     },error =>{

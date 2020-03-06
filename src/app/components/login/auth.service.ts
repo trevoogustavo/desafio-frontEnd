@@ -22,7 +22,6 @@ fazerLogin(user: User){
   if((user.nome ==="admin" || user.nome ==="comun") && (user.senha ==="123456") ){
     //btoa(user.senha)
     let headers = new HttpHeaders().set('Authorization','Basic '+btoa(user.nome+':'+user.senha)); 
-    console.log(headers);
     this.http.head(this.API,  )
         return this.http.post<User>(this.API,user, {headers} );
         this.usuarioAutenticado = true;

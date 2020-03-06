@@ -25,7 +25,6 @@ error: any ;
        sessionStorage.setItem('pass', btoa(this.user.senha));
        sessionStorage.setItem('level', data.level)
        this.router.navigate([''])
-       console.log(data);
      }, error =>{
        this.error = error;
        alert("Algo deu errado, tente novamente mais tarde.")

@@ -54,7 +54,7 @@
             <input  type="text" class="form-control"  id="uf" formControlName="uf" [ngModel]="endereco.uf" placeholder="">
           </div>  
         </div>      
-        <h5>Telefones</h5>
+        <h5>Telefones *</h5>
         <div class="row">
             <div class="form-group col-4">
               <label for="telefone">Tipo</label>
@@ -87,11 +87,11 @@
               </table>
             </div> 
           </div>      
-        <h5>Emails</h5>
+        <h5>Emails *</h5>
           <div class="row">
               <div class="col-8">
                 <label for="Uf">Email</label>
-                <input  type="text" class="form-control"  formControlName="email"  id="" placeholder="" email>
+                <input  type="text" class="form-control"  formControlName="email" [email] id="" placeholder="" email>
               </div>
               <div  class="mt-4 col-4 btn-group" style="padding-top: 8px;">
                 <button class=" form-control btn btn-primary" type="button" (click)="addEmail()" >Adicionar</button>
@@ -111,7 +111,7 @@
               </table>
             </div> 
           </div>
-        <button class="mt-3 btn btn-primary" type="button" (click)="salvarCliente()">Salvar</button>
+        <button [disabled]="!formulario.valid" class="mt-3 btn btn-primary" type="button"  (click)="salvarCliente()">Salvar</button>
       </form>
 </div>
 </div>
